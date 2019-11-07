@@ -10,3 +10,35 @@ INSERT INTO dogs(age, name, reside_state) VALUE
     (6, 'Red', 'FL'),
     (8, 'Barney', 'CA'),
     (12, 'Bowser', 'TX');
+
+insert into posts (title, body) values ('Computer Systems Analyst II', 'Srostki');
+insert into posts (title, body) values ('Quality Engineer', 'Bugembe');
+insert into posts (title, body) values ('VP Product Management', 'Sabangan');
+insert into posts (title, body) values ('Associate Professor', 'San Cosme y Damián');
+insert into posts (title, body) values ('Web Designer III', 'Wukari');
+insert into posts (title, body) values ('Cost Accountant', 'Changning');
+insert into posts (title, body) values ('Actuary', 'Palestina de los Altos');
+insert into posts (title, body) values ('Paralegal', 'Tākestān');
+insert into posts (title, body) values ('Account Coordinator', 'A dos Negros');
+insert into posts (title, body) values ('Programmer III', 'Selouane');
+insert into posts (title, body) values ('Computer Systems Analyst II', 'Srostki');
+insert into posts (title, body) values ('Quality Engineer', 'Bugembe');
+insert into posts (title, body) values ('VP Product Management', 'Sabangan');
+insert into posts (title, body) values ('Associate Professor', 'San Cosme y Damián');
+insert into posts (title, body) values ('Web Designer III', 'Wukari');
+insert into posts (title, body) values ('Cost Accountant', 'Changning');
+insert into posts (title, body) values ('Actuary', 'Palestina de los Altos');
+insert into posts (title, body) values ('Paralegal', 'Tākestān');
+insert into posts (title, body) values ('Account Coordinator', 'A dos Negros');
+insert into posts (title, body) values ('Programmer III', 'Selouane');
+insert into posts (title, body) values ('Computer Systems Analyst II', 'Srostki');
+insert into posts (title, body) values ('Quality Engineer', 'Bugembe');
+insert into posts (title, body) values ('VP Product Management', 'Sabangan');
+insert into posts (title, body) values ('Associate Professor', 'San Cosme y Damián');
+insert into posts (title, body) values ('Web Designer III', 'Wukari');
+insert into posts (title, body) values ('Cost Accountant', 'Changning');
+insert into posts (title, body) values ('Actuary', 'Palestina de los Altos');
+insert into posts (title, body) values ('Paralegal', 'Tākestān');
+insert into posts (title, body) values ('Account Coordinator', 'A dos Negros');
+insert into posts (title, body) values ('Programmer III', 'Selouane');
+
