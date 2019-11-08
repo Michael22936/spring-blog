@@ -1,6 +1,7 @@
-package com.codeup.blog.blog;
+package com.codeup.blog.blog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -13,6 +14,14 @@ public class Post {
     private String title;
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
+    @OneToOne
+    private PostDetails postDetails;
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    private List<PostImage> postImages;
+    @ManyToMany(mappedBy = "posts")
+    private List<Tag> tags;
+
+
 
     public Post() {
     }
@@ -48,5 +57,28 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+    public List<PostImage> getPostImages() {
+        return postImages;
+    }
+
+    public void setPostImages(List<PostImage> postImages) {
+        this.postImages = postImages;
+    }
+
+    public PostDetails getPostDetails() {
+        return postDetails;
+    }
+
+    public void setPostDetails(PostDetails postDetails) {
+        this.postDetails = postDetails;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 }
