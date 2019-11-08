@@ -1,19 +1,27 @@
 package com.codeup.blog.blog.controllers;
 
-import com.codeup.blog.blog.Post;
+import com.codeup.blog.blog.models.Post;
+import com.codeup.blog.blog.models.PostImage;
+import com.codeup.blog.blog.models.Tag;
+import com.codeup.blog.blog.repositories.PostImageRepository;
 import com.codeup.blog.blog.repositories.PostRepository;
+import com.codeup.blog.blog.repositories.TagRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 @Controller
 public class PostController {
     private final PostRepository postDao;
+    private final PostImageRepository postImageDao;
+    private final TagRepository tagDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, PostImageRepository postImageDao, TagRepository tagDao) {
         this.postDao = postDao;
+        this.postImageDao = postImageDao;
+        this.tagDao = tagDao;
     }
     @GetMapping("/posts")
     public String index(Model model){
@@ -65,5 +73,46 @@ public class PostController {
         System.out.println("body = " + body);
         return "create new post";
     }
+
+    @GetMapping("/posts/history/{id}")
+    public String testView(@PathVariable long id, Model model){
+        model.addAttribute("post", postDao.getOne(id));
+        return "posts/test";
+    }
+
+    @GetMapping("/posts/{id}/add-image")
+    public String catView(@PathVariable long id, Model model){
+        model.addAttribute("post", postDao.getOne(id));
+        return "posts/test";
+    }
+
+    @PostMapping("/posts/{id}/add-image")
+    public String addImage(
+            @PathVariable long id,
+            @RequestParam String title,
+            @RequestParam String url) {
+
+        PostImage postImage = new PostImage(title, url);
+        postImage.setPost(postDao.getOne(id));
+        postImageDao.save(postImage);
+
+        return "redirect:/posts/{id}/add-image";
+    }
+
+    @GetMapping("/post-tags")
+    public String getPetVets(Model model) {
+        model.addAttribute("posts", postDao.findAll());
+        return "posts/test";
+    }
+
+    @PostMapping("/tags/post/{id}")
+    public String assignNewTagToPost(
+            @PathVariable long id,
+            @RequestParam String tag) {
+        Post post = postDao.getOne(id);
+        tagDao.save(new Tag(tag, Arrays.asList(post)));
+        return "redirect:/post-tags";
+    }
+
 
 }

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<!--<h1 th:text="${post.title}"></h1>-->
+<!--<p th:text="${post.body}"></p>-->
+
+<!--<div th:each="post : ${post.postImages}">-->
+<!--    <h1 th:text="${post.image_title}"></h1>-->
+<!--    <img th:src="${post.url}" alt="">-->
+<!--</div>-->
+
+
+<!--<form th:action="@{'/posts/' + ${post.id} + '/add-image'}" th:method="post">-->
+<!--    <input type="text" name="title" placeholder="title">-->
+<!--    <input type="text" name="url" placeholder="url">-->
+<!--    <button>Add Image</button>-->
+
+<h1>List of Post Tags</h1>
+
+<div th:each="post : ${posts}">
+    <h3><span th:text="${post.title}"></span></h3>
+    <ul th:each="tag : ${post.tags}">
+        <li th:text="${tag.name}"></li>
+    </ul>
+    <form th:action="@{'/tags/post/' + ${post.id}}" th:method="post">
+        <input type="text" name="tag" placeholder="Enter tag">
+        <button>Add Tag</button>
+    </form>
+</div>
+</body>
+</html>
