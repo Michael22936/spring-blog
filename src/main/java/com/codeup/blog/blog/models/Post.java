@@ -20,7 +20,9 @@ public class Post {
     private List<PostImage> postImages;
     @ManyToMany(mappedBy = "posts")
     private List<Tag> tags;
-
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
     public Post() {
@@ -29,7 +31,7 @@ public class Post {
     public Post(long id) {
     }
 
-    public Post(long id, String title, String body) {
+    public Post(String title, String body) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -81,4 +83,12 @@ public class Post {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }

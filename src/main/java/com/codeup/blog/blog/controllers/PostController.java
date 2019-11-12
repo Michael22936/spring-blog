@@ -3,9 +3,11 @@ package com.codeup.blog.blog.controllers;
 import com.codeup.blog.blog.models.Post;
 import com.codeup.blog.blog.models.PostImage;
 import com.codeup.blog.blog.models.Tag;
+import com.codeup.blog.blog.models.User;
 import com.codeup.blog.blog.repositories.PostImageRepository;
 import com.codeup.blog.blog.repositories.PostRepository;
 import com.codeup.blog.blog.repositories.TagRepository;
+import com.codeup.blog.blog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +19,13 @@ public class PostController {
     private final PostRepository postDao;
     private final PostImageRepository postImageDao;
     private final TagRepository tagDao;
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao, PostImageRepository postImageDao, TagRepository tagDao) {
+    public PostController(PostRepository postDao, PostImageRepository postImageDao, TagRepository tagDao, UserRepository userDao) {
         this.postDao = postDao;
         this.postImageDao = postImageDao;
         this.tagDao = tagDao;
+        this.userDao= userDao;
     }
     @GetMapping("/posts")
     public String index(Model model){
@@ -61,17 +65,17 @@ public class PostController {
         return "redirect:/posts";
     }
     @GetMapping("/posts/create")
-    @ResponseBody
-    public String showForm(){
-        return  "view the form for creating a post";
+    public String showForm(Model model){
+        model.addAttribute("posts", new Post());
+        return  "posts/create";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
     public String create(@RequestParam String title, @RequestParam String body){
-        System.out.println("title = " + title);
-        System.out.println("body = " + body);
-        return "create new post";
+        Post post = new Post(title, body);
+        post.setUser(userDao.getOne(1L));
+        Post postId = postDao.save(post);
+        return "redirect:/posts/" + postId.getId();
     }
 
     @GetMapping("/posts/history/{id}")

@@ -11,7 +11,7 @@ INSERT INTO dogs(age, name, reside_state) VALUE
     (8, 'Barney', 'CA'),
     (12, 'Bowser', 'TX');
 
-insert into posts (title, body, post_details_id) values ('Computer Systems Analyst II', 'Srostki', 11);
+insert into posts (title, body, user_id) values ('Computer Systems Analyst II', 'Srostki', 1);
 insert into posts (title, body, post_details_id) values ('Quality Engineer', 'Bugembe', 12);
 insert into posts (title, body, post_details_id) values ('VP Product Management', 'Sabangan', 3);
 insert into posts (title, body, post_details_id) values ('Associate Professor', 'San Cosme y Damián',4);
@@ -48,6 +48,8 @@ insert into post_details (history_of_post, is_awesome, topic_description) VALUE 
 insert into tag(name) values ('Silly');
 insert into tag(name) values ('Funny');
 insert into tag(name) values ('Humor');
+
+insert into user(email, password, username) VALUES ('username@gmail.com', 'password','admin');
 
 insert into post_tag(tag_id, post_id) VALUES
 (1,1),
