@@ -3,11 +3,12 @@ package com.codeup.blog.blog.controllers;
 import com.codeup.blog.blog.models.Post;
 import com.codeup.blog.blog.models.PostImage;
 import com.codeup.blog.blog.models.Tag;
-import com.codeup.blog.blog.models.User;
 import com.codeup.blog.blog.repositories.PostImageRepository;
 import com.codeup.blog.blog.repositories.PostRepository;
 import com.codeup.blog.blog.repositories.TagRepository;
 import com.codeup.blog.blog.repositories.UserRepository;
+import com.codeup.blog.blog.services.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,8 @@ public class PostController {
     private final PostImageRepository postImageDao;
     private final TagRepository tagDao;
     private final UserRepository userDao;
+    @Autowired
+    EmailService emailService;
 
     public PostController(PostRepository postDao, PostImageRepository postImageDao, TagRepository tagDao, UserRepository userDao) {
         this.postDao = postDao;
@@ -71,11 +74,11 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String create(@RequestParam String title, @RequestParam String body){
-        Post post = new Post(title, body);
-        post.setUser(userDao.getOne(1L));
-        Post postId = postDao.save(post);
-        return "redirect:/posts/" + postId.getId();
+    public String create(@ModelAttribute Post createdNewPost){
+        createdNewPost.setUser(userDao.getOne(1L));
+        Post post = postDao.save(createdNewPost);
+        emailService.prepareAndSend(post, "Ad created", "An ad has been created with this title " + post.getTitle());
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/history/{id}")

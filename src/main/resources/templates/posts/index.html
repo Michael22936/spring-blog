@@ -11,6 +11,7 @@
 
 <div class="card" th:each="post : ${posts}">
     <h1 th:text="${post.title}"></h1>
+    <span th:each="tag : ${post.tags}" th:text="${tag.name}"></span>
     <h3 th:text="${post.user.email}"></h3>
     <p th:text="${post.body}"></p>
 </div>
