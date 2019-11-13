@@ -50,6 +50,7 @@ insert into tag(name) values ('Funny');
 insert into tag(name) values ('Humor');
 
 insert into user(email, password, username) VALUES ('username@gmail.com', 'password','admin');
+insert into user(email, password, username) VALUES ('hello@me.com', 'pass', 'hello');
 
 insert into post_tag(tag_id, post_id) VALUES
 (1,1),
