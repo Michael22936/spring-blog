@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import com.codeup.blog.blog.controllers.TextServices;
 
 @Controller
 public class PostController {
@@ -23,14 +24,16 @@ public class PostController {
     private final PostImageRepository postImageDao;
     private final TagRepository tagDao;
     private final UserRepository userDao;
+    private final TextServices  textServices;
     @Autowired
     EmailService emailService;
 
-    public PostController(PostRepository postDao, PostImageRepository postImageDao, TagRepository tagDao, UserRepository userDao) {
+    public PostController(PostRepository postDao, PostImageRepository postImageDao, TagRepository tagDao, UserRepository userDao, TextServices textServices) {
         this.postDao = postDao;
         this.postImageDao = postImageDao;
         this.tagDao = tagDao;
         this.userDao= userDao;
+        this.textServices = textServices;
     }
     @GetMapping("/posts")
     public String index(Model model){
