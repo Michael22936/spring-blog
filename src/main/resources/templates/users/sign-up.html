@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <title>Sign up</title>
+    <th:block th:replace="fragments/header :: main-header"/>
 </head>
 <body>
+<div th:replace="fragments/navbar :: main-navbar"></div>
+<div class="container d-flex justify-content-center">
+    <div class="card text-center border-primary p-3" style="width: 18rem; margin: 12rem">
 <h1>Create an account</h1>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
     <label for="username">Username</label>
@@ -16,7 +20,10 @@
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
 
-    <input value="Sign me up!" type="submit" />
+    <input class="btn btn-primary btn-block" value="Sign me up!" type="submit" />
 </form>
+    </div>
+</div>
+<th:block th:replace="fragments/footer :: main-footer"/>
 </body>
 </html>

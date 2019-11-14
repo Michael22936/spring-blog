@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Create a Post</title>
+    <th:block th:replace="fragments/header :: main-header"/>
 </head>
 <body>
+<div th:replace="fragments/navbar :: main-navbar"></div>
+<div class="container d-flex justify-content-center">
+    <div class="card text-center border-primary p-3" style="width: 18rem; margin: 12rem">
+        <h1>Create a post</h1>
     <form th:action="@{'/posts/create'}" th:method="post" th:object="${posts}">
-        <input th:field="*{title}" placeholder="enter title">
-        <input th:field="*{body}" placeholder="enter body">
-        <button>Add Post</button>
+        <input th:field="*{title}" type="text" placeholder="enter title">
+        <textarea th:field="*{body}" rows="3" class="form-control" placeholder="enter body"></textarea>
+        <button class="btn btn-primary btn-block" >Add Post</button>
     </form>
+    </div>
+    </div>
+<th:block th:replace="fragments/footer :: main-footer"/>
 </body>
 </html>
