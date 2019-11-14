@@ -24,7 +24,7 @@
 
             <th:block th:if="${post.user.id == #authentication.principal.id}">
                 <a th:href="@{'/posts/' + ${post.id} + '/edit'}" class="btn btn-warning btn-block">Edit Ad</a>
-                <form th:action="@{'/delete/posts'}" method="post">
+                <form th:action="@{'/posts/delete'}" method="post">
                     <button class="btn btn-danger btn-block" name="id" th:value="${post.id}">Delete Ad</button>
                 </form>
             </th:block>
