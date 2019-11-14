@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import com.codeup.blog.blog.controllers.TextServices;
+import com.codeup.blog.blog.services.TextServices;
 
 @Controller
 public class UserController {

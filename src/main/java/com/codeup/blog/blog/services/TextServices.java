@@ -1,4 +1,4 @@
-package com.codeup.blog.blog.controllers;
+package com.codeup.blog.blog.services;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
@@ -22,7 +22,7 @@ public class TextServices {
 
         Message message = Message.creator(new PhoneNumber("+18302377771"),
                 new PhoneNumber("+19388887261"),
-                "Welcome").create();
+                "Someone make an account").create();
 
         System.out.println(message.getSid());
     }
