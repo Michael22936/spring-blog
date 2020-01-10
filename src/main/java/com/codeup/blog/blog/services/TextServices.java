@@ -17,6 +17,7 @@ public class TextServices {
     private String AUTH_TOKEN;
 
 
+    //this method sends a text to when a new user is created
     public void sendText(){
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
