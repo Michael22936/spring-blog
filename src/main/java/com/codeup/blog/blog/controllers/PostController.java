@@ -71,18 +71,22 @@ public class PostController {
         return "redirect:/posts/" + id;
     }
 
+    //deletes a specific post
     @PostMapping("/posts/delete")
     public String deletePostBy(@RequestParam("id")  String id){
         long deleteId = Long.parseLong(id);
         postDao.deleteById(deleteId);
         return "redirect:/posts";
     }
+
+    //return a page to make a post
     @GetMapping("/posts/create")
     public String showForm(Model model){
         model.addAttribute("posts", new Post());
         return  "posts/create";
     }
 
+    //adds the new post to the database
     @PostMapping("/posts/create")
     public String create(@ModelAttribute Post createdNewPost){
         createdNewPost.setUser((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal());
@@ -92,18 +96,21 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    //returns the history of that specif post
     @GetMapping("/posts/history/{id}")
     public String testView(@PathVariable long id, Model model){
         model.addAttribute("post", postDao.getOne(id));
         return "posts/test";
     }
 
+    //returns a page to added a picture to a post
     @GetMapping("/posts/{id}/add-image")
     public String catView(@PathVariable long id, Model model){
         model.addAttribute("post", postDao.getOne(id));
         return "posts/test";
     }
 
+    //saves the new picture to that specific post
     @PostMapping("/posts/{id}/add-image")
     public String addImage(
             @PathVariable long id,
