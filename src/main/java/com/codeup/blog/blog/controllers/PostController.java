@@ -35,6 +35,8 @@ public class PostController {
         this.userDao= userDao;
         this.textServices = textServices;
     }
+
+    //returns on the post on one page
     @GetMapping("/posts")
     public String index(Model model){
 
@@ -43,6 +45,7 @@ public class PostController {
         return "posts/index";
     }
 
+    //returns one post with a specific id
     @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model model){
 
@@ -51,12 +54,14 @@ public class PostController {
         return  "posts/show";
     }
 
+    //returns a edit page to a user
     @GetMapping("/posts/{id}/edit")
     public String edit(@PathVariable long id, Model viewModel) {
         viewModel.addAttribute("post", postDao.getOne(id));
         return "posts/edit";
     }
 
+    //saves the changes to a post with the same id
     @PostMapping("/posts/{id}/edit")
     public String update(@PathVariable long id, @RequestParam String title, @RequestParam String body) {
         Post oldPost = postDao.getOne(id);
